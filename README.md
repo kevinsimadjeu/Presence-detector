@@ -26,12 +26,19 @@ Lightweight UI  of detections
 - NumPy
 
 #PROJECT STRUCTURE
+
   ── models  
+  
   ── yolovX.weights   # Large files stored via Git LFS
+  
   ── yolov8n.pt
+  
   ── src/
+  
  ── ui.py
+ 
 │── model.py
+
  ── README.md
 
 #MODEL FILES
@@ -39,6 +46,7 @@ Lightweight UI  of detections
 Because YOLO weight files are very large (>200 MB), they are tracked using Git LFS.
 
 If needed, install Git LFS:
+
 git lfs install
 
 Then download the model:
