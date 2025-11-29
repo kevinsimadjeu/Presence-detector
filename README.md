@@ -53,7 +53,7 @@ Then download the model:
 
 git lfs pull
 
-INSTRUCTION: To start the project, run the ui.py file and it will automatically call the YOLODetector class from the model.py file.
+
 
 
 
