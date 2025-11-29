@@ -8,7 +8,7 @@ import threading
 import time
 from datetime import datetime
 from collections import deque
-from model import YOLODetector  # ✅ On importe notre classe du fichier séparé
+from model import YOLODetector  #On importe notre classe du fichier séparé
 
 
 class FastYOLOApp:
@@ -25,7 +25,7 @@ class FastYOLOApp:
         # Variables
         self.running = False
         self.cap = None
-        self.detector = YOLODetector()  # ✅ utilisation de la classe du fichier model.py
+        self.detector = YOLODetector()  #utilisation de la classe du fichier model.py
         self.confidence_threshold = 0.5
 
         # Statistiques / Statistics
@@ -76,7 +76,7 @@ class FastYOLOApp:
         header_frame = ttk.Frame(main_container, style='Modern.TFrame')
         header_frame.pack(fill=tk.X, pady=(0, 10))
 
-        title = ttk.Label(header_frame, text="⚡ Detector - Ultra Fast",
+        title = ttk.Label(header_frame, text="⚡Presence-Detector ",
                          style='Title.TLabel')
         title.pack(side=tk.LEFT)
 
@@ -170,7 +170,7 @@ class FastYOLOApp:
                                font=('Segoe UI', 16, 'bold'))
         stats_title.pack(pady=(0, 15))
 
-        # Cartes stats . map of statistics
+        # Cartes stats / map of statistics
         self.create_stat_card(right_column, "FPS ⚡", "0")
         self.fps_value_label = self.stat_cards[-1]
 

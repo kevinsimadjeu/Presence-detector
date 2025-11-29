@@ -1,6 +1,7 @@
 # model.py
 import os
 import sys
+import time
 from ultralytics import YOLO
 from tkinter import messagebox
 
@@ -12,6 +13,13 @@ def resource_path(relative_path):
         base_path = os.path.abspath(".")
     return os.path.join(base_path, relative_path)
 
+#Fonction pour ecrire du text en fonction du temps 
+def type_write(text, speed=0.04):
+    for char in text:
+         print(char, end="", flush=True)
+         time.sleep(speed)
+    print()
+
 
 class YOLODetector:
     """Gestionnaire YOLOv8 (chargement, prédiction, etc.)"""
@@ -21,11 +29,14 @@ class YOLODetector:
         self.model_name = model_name
         self.confidence = confidence
         self.load_model()
+        
+
 
     def load_model(self):
         """Charge YOLOv8"""
         try:
-            print("🔄 Chargement du modèle YOLOv8...")
+            type_write("🔄 Chargement du modèle YOLOv8...")
+           
 
             model_path = resource_path(self.model_name)
             if not os.path.exists(model_path):
@@ -33,7 +44,9 @@ class YOLODetector:
                 model_path = self.model_name  # YOLO télécharge automatiquement
 
             self.model = YOLO(model_path)
-            print("✅ YOLOv8 chargé avec succès 🚀")
+            type_write("✅ YOLOv8 chargé avec succès ")
+            
+
 
         except Exception as e:
             messagebox.showerror("Erreur", f"Impossible de charger YOLOv8:\n{e}")

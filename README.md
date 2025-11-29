@@ -24,6 +24,7 @@ Lightweight UI  of detections
 - OpenCV
 - YOLO 
 - NumPy
+- Tkinter
 
 #PROJECT STRUCTURE
 
@@ -35,11 +36,11 @@ Lightweight UI  of detections
   
   ── src/
   
- ── ui.py
+  ── ui.py
  
-│── model.py
+  ── model.py
 
- ── README.md
+  ── README.md
 
 #MODEL FILES
 
@@ -52,6 +53,8 @@ git lfs install
 Then download the model:
 
 git lfs pull
+
+INSTRUCTION: To start the project, run the ui.py file and it will automatically call the YOLODetector class from the model.py file.
 
 
 
