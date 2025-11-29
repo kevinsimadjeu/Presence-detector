@@ -30,7 +30,7 @@ Lightweight UI  of detections
 
   ── models  
   
-  ── yolovX.weights   # Large files stored via Git LFS
+  ── yolov4.weights   # Large files stored via Git LFS
   
   ── yolov8n.pt
   
