@@ -22,12 +22,13 @@ Lightweight UI  of detections
 
 
 
- #Technologies and modules used 
-- Python 3
-- OpenCV
-- YOLO 
-- NumPy
-- Tkinter
+ #MAIN TECHNOLOGIES AND MODULES USED
+ 
+ • Python 3
+ • OpenCV
+ • YOLO 
+ • NumPy
+ • Tkinter
 
 
 
