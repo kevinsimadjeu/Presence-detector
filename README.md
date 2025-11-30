@@ -57,10 +57,6 @@ Because YOLO weight files are very large (>200 MB), they are tracked using Git L
 
 If needed, install Git LFS:
 
-• ui.py
-
-• model.py
-
 • " git lfs install "
 
 Then download the model:
