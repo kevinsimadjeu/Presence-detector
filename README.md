@@ -10,7 +10,7 @@ This project demonstrates how to build an efficient detection pipeline, process 
 
 Real-time detection using webcam or video input
 
-Supports multiple classes (persons, objects, etc.)
+Supports multiple class (persons,animals, objects, etc.)
 
 Uses YOLOv4 / YOLOv5 / YOLOv8 (depending on your model choice)
 
