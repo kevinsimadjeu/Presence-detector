@@ -33,15 +33,15 @@ class YOLODetector:
 
 
     def load_model(self):
-        """Charge YOLOv8"""
+        #Charge YOLOv8
         try:
             type_write("🔄 Chargement du modèle YOLOv8...")
            
 
             model_path = resource_path(self.model_name)
             if not os.path.exists(model_path):
-                print("⚠️  Modèle non trouvé, téléchargement automatique...")
-                model_path = self.model_name  # YOLO télécharge automatiquement
+                type_write("⚠️  Modèle non trouvé, téléchargement automatique...")
+                model_path = self.model_name  # YOLO télécharge automatiquement s'il n'est pas trouvé NB: Que le lecteur de se code s'assure qu'il soit connecté à Internet !!!
 
             self.model = YOLO(model_path)
             type_write("✅ YOLOv8 chargé avec succès ")
@@ -53,7 +53,7 @@ class YOLODetector:
             sys.exit(1)
 
     def predict(self, frame, imgsz=320, verbose=False):
-        """Effectue une prédiction sur une image"""
+        #Effectue une prédiction sur une image
         return self.model.predict(
             source=frame,
             conf=self.confidence,

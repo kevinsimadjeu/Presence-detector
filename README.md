@@ -41,17 +41,24 @@ Lightweight UI  of detections
 
 ----> ReadMe.md
 
-  ── models/
+  ── YOLO/
   
     • yolov4.weights   # Large files stored via Git LFS
   
     • yolov8n.pt
   
   ── src/
-  
-    • model.py
- 
+
     • ui.py
+
+  ── modelProcessing/  
+
+    • model.py
+        
+    • processing.py
+
+
+
 
  
 
@@ -73,7 +80,7 @@ Then download the model:
 #INSTRUCTION: 
 
 
- To start the project, run the ui.py file and it will automatically call the YOLODetector class from the model.py file.
+ To start the project, run the ui.py file and it will automatically call the processing file and the  YOLODetector class from the model.py file.
 
 
 

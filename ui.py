@@ -1,4 +1,3 @@
-# ui.py
 import cv2
 import numpy as np
 import tkinter as tk
@@ -8,46 +7,29 @@ import threading
 import time
 from datetime import datetime
 from collections import deque
-from model import YOLODetector  #On importe notre classe du fichier séparé
+from modelProcessing.processing import Processing 
 
 
-class FastYOLOApp:
-    """Interface graphique ultra-rapide avec YOLOv8"""
+class myUI:
+    """Interface graphique"""
 
     def __init__(self, root):
         self.root = root
-        self.root.title("⚡ Detector - Ultra Fast")
+        self.root.title("⚡Presence-Detector⚡")
         self.root.geometry("1400x900")
         self.root.configure(bg='#1e1e2e')
 
         self.setup_styles()
 
         # Variables
+        self.processor = Processing()      # Appelle du constructeur de la classe Processing(Traitement)
         self.running = False
-        self.cap = None
-        self.detector = YOLODetector()  #utilisation de la classe du fichier model.py
-        self.confidence_threshold = 0.5
 
-        # Statistiques / Statistics
-        self.stats = {
-            'total_detections': 0,
-            'fps': 0,
-            'objects_per_frame': deque(maxlen=100),
-            'detection_history': {},
-            'start_time': None
-        }
-
-        # Enregistrement / recording
-        self.recording = False
-        self.video_writer = None
-
-        # Labels de stats /  Label of statistics
-        self.stat_cards = []
-
-        # Interface /  UI
+        # Interface / UI
         self.create_ui()
         self.update_stats_display()
-
+       
+       #Gestion du style de l'interface
     def setup_styles(self):
         style = ttk.Style()
         style.theme_use('clam')
@@ -76,7 +58,7 @@ class FastYOLOApp:
         header_frame = ttk.Frame(main_container, style='Modern.TFrame')
         header_frame.pack(fill=tk.X, pady=(0, 10))
 
-        title = ttk.Label(header_frame, text="⚡Presence-Detector ",
+        title = ttk.Label(header_frame, text="⚡Detecteur-De-Presence ",
                          style='Title.TLabel')
         title.pack(side=tk.LEFT)
 
@@ -89,7 +71,7 @@ class FastYOLOApp:
         content_frame = ttk.Frame(main_container, style='Modern.TFrame')
         content_frame.pack(fill=tk.BOTH, expand=True)
 
-        # Colonne gauche: Vidéo
+        # Colonne gauche
         left_column = ttk.Frame(content_frame, style='Modern.TFrame')
         left_column.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(0, 10))
 
@@ -99,7 +81,7 @@ class FastYOLOApp:
         self.video_canvas = tk.Canvas(video_card, bg='#000000', highlightthickness=0)
         self.video_canvas.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
 
-        # Contrôles / contol
+        # Boutons
         controls_frame = ttk.Frame(left_column, style='Card.TFrame')
         controls_frame.pack(fill=tk.X, pady=(0, 10))
 
@@ -138,29 +120,25 @@ class FastYOLOApp:
                                        padx=20, pady=10, state='disabled')
         self.screenshot_btn.pack(side=tk.LEFT, padx=5)
 
-        # Paramètres / setting
+        # Paramètres
         params_frame = ttk.Frame(left_column, style='Card.TFrame')
         params_frame.pack(fill=tk.X)
 
         params_inner = ttk.Frame(params_frame, style='Card.TFrame')
         params_inner.pack(padx=15, pady=15, fill=tk.X)
 
-        ttk.Label(params_inner, text="Confiance:",
-                 style='Stat.TLabel').grid(row=0, column=0, sticky='w', pady=5)
+        ttk.Label(params_inner, text="Confiance:", style='Stat.TLabel').grid(row=0, column=0, sticky='w')
 
         self.confidence_var = tk.DoubleVar(value=0.5)
         confidence_scale = ttk.Scale(params_inner, from_=0.1, to=0.9,
                                     variable=self.confidence_var,
                                     orient='horizontal', length=200)
-        confidence_scale.grid(row=0, column=1, padx=10, pady=5)
-
-        self.confidence_label = ttk.Label(params_inner, text="50%",
-                                         style='Stat.TLabel')
-        self.confidence_label.grid(row=0, column=2, pady=5)
-
+        confidence_scale.grid(row=0, column=1, padx=10)
+        self.confidence_label = ttk.Label(params_inner, text="50%", style='Stat.TLabel')
+        self.confidence_label.grid(row=0, column=2)
         confidence_scale.configure(command=self.update_confidence)
 
-        # Colonne droite: Stats
+        # Colonne droite
         right_column = ttk.Frame(content_frame, style='Modern.TFrame', width=350)
         right_column.pack(side=tk.RIGHT, fill=tk.BOTH)
         right_column.pack_propagate(False)
@@ -170,7 +148,8 @@ class FastYOLOApp:
                                font=('Segoe UI', 16, 'bold'))
         stats_title.pack(pady=(0, 15))
 
-        # Cartes stats / map of statistics
+        self.stat_cards = []
+
         self.create_stat_card(right_column, "FPS ⚡", "0")
         self.fps_value_label = self.stat_cards[-1]
 
@@ -183,7 +162,6 @@ class FastYOLOApp:
         self.create_stat_card(right_column, "Temps Écoulé", "00:00:00")
         self.time_value_label = self.stat_cards[-1]
 
-        # Top 5
         top_frame = ttk.Frame(right_column, style='Card.TFrame')
         top_frame.pack(fill=tk.BOTH, expand=True, pady=(15, 0))
 
@@ -214,9 +192,10 @@ class FastYOLOApp:
         self.stat_cards.append(value_label)
 
     def update_confidence(self, value):
-        self.confidence_threshold = float(value)
+        self.processor.confidence_threshold = float(value)
+        if hasattr(self.processor, "detector"):
+            self.processor.detector.confidence = float(value)
         self.confidence_label.config(text=f"{int(float(value)*100)}%")
-        self.detector.confidence = self.confidence_threshold
 
     def update_clock(self):
         current_time = datetime.now().strftime("%H:%M:%S - %d/%m/%Y")
@@ -224,18 +203,13 @@ class FastYOLOApp:
         self.root.after(1000, self.update_clock)
 
     def start_detection(self):
-        if not self.running:
-            self.cap = cv2.VideoCapture(0)
-            if not self.cap.isOpened():
+        if not self.processor.running:
+            ok = self.processor.start()
+            if not ok:
                 messagebox.showerror("Erreur", "Caméra introuvable!")
                 return
 
-            self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-            self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-            self.running = True
-            self.stats['start_time'] = time.time()
-            self.stats['total_detections'] = 0
-            self.stats['detection_history'] = {}
+            self.processor.running = True
 
             self.start_btn.config(state='disabled')
             self.stop_btn.config(state='normal')
@@ -246,74 +220,30 @@ class FastYOLOApp:
             self.detection_thread.start()
 
     def stop_detection(self):
-        self.running = False
-        if self.recording:
-            self.toggle_recording()
-        if self.cap:
-            self.cap.release()
+        self.processor.stop()
+
         self.start_btn.config(state='normal')
         self.stop_btn.config(state='disabled')
         self.record_btn.config(state='disabled')
         self.screenshot_btn.config(state='disabled')
 
     def toggle_recording(self):
-        if not self.recording:
-            fourcc = cv2.VideoWriter_fourcc(*'XVID')
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f'detection_{timestamp}.avi'
-
-            ret, frame = self.cap.read()
-            if ret:
-                h, w = frame.shape[:2]
-                self.video_writer = cv2.VideoWriter(filename, fourcc, 20.0, (w, h))
-                self.recording = True
-                self.record_btn.config(text="⏹ Stop", bg='#f38ba8')
+        self.processor.toggle_recording()
+        if self.processor.recording:
+            self.record_btn.config(text="⏹ Stop", bg='#f38ba8')
         else:
-            if self.video_writer:
-                self.video_writer.release()
-            self.recording = False
             self.record_btn.config(text="🎥 Enregistrer", bg='#89b4fa')
 
     def take_screenshot(self):
-        if hasattr(self, 'current_frame') and self.current_frame is not None:
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            filename = f'screenshot_{timestamp}.jpg'
-            cv2.imwrite(filename, self.current_frame)
+        filename = self.processor.screenshot()
+        if filename:
             messagebox.showinfo("✅", f"Capture: {filename}")
 
     def detection_loop(self):
-        fps_start_time = time.time()
-        fps_counter = 0
-        while self.running:
-            ret, frame = self.cap.read()
-            if not ret:
-                break
-
-            results = self.detector.predict(frame)
-            num_detections = len(results.boxes)
-            if num_detections > 0:
-                self.stats['total_detections'] += num_detections
-                self.stats['objects_per_frame'].append(num_detections)
-                for box in results.boxes:
-                    class_id = int(box.cls[0])
-                    label = results.names[class_id]
-                    self.stats['detection_history'][label] = \
-                        self.stats['detection_history'].get(label, 0) + 1
-
-            fps_counter += 1
-            if (time.time() - fps_start_time) > 1:
-                self.stats['fps'] = fps_counter
-                fps_counter = 0
-                fps_start_time = time.time()
-
-            annotated_frame = results.plot()
-            if self.recording and self.video_writer:
-                self.video_writer.write(annotated_frame)
-            self.current_frame = annotated_frame.copy()
-            self.display_frame(annotated_frame)
-
-        if self.cap:
-            self.cap.release()
+        while self.processor.running:
+            frame = self.processor.loop()
+            if frame is not None:
+                self.display_frame(frame)
 
     def display_frame(self, frame):
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -339,24 +269,29 @@ class FastYOLOApp:
             self.video_canvas.imgtk = imgtk
 
     def update_stats_display(self):
-        if self.running:
-            self.fps_value_label.config(text=f"{self.stats['fps']}")
-            current = self.stats['objects_per_frame'][-1] if self.stats['objects_per_frame'] else 0
+        if self.processor.running:
+            stats = self.processor.stats
+
+            self.fps_value_label.config(text=f"{stats['fps']}")
+            current = stats['objects_per_frame'][-1] if stats['objects_per_frame'] else 0
             self.objects_value_label.config(text=f"{current}")
-            self.total_value_label.config(text=f"{self.stats['total_detections']}")
-            if self.stats['start_time']:
-                elapsed = int(time.time() - self.stats['start_time'])
+            self.total_value_label.config(text=f"{stats['total_detections']}")
+
+            if stats['start_time']:
+                elapsed = int(time.time() - stats['start_time'])
                 h, m, s = elapsed // 3600, (elapsed % 3600) // 60, elapsed % 60
                 self.time_value_label.config(text=f"{h:02d}:{m:02d}:{s:02d}")
+
             self.top_list.delete(0, tk.END)
-            sorted_det = sorted(self.stats['detection_history'].items(),
+            sorted_det = sorted(stats['detection_history'].items(),
                                key=lambda x: x[1], reverse=True)[:5]
             for i, (label, count) in enumerate(sorted_det, 1):
                 self.top_list.insert(tk.END, f"{i}. {label}: {count}")
+
         self.root.after(100, self.update_stats_display)
 
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = FastYOLOApp(root)
+    app = myUI(root)
     root.mainloop()
