@@ -4,6 +4,8 @@ A real-time presence detection system capable of identifying people and various 
 
 This project demonstrates how to build an efficient detection pipeline, process camera frames, and generate bounding boxes with confidence scores.
 
+
+
 #FEATURER
 
 Real-time detection using webcam or video input
@@ -18,6 +20,8 @@ Modular and easy to extend
 
 Lightweight UI  of detections
 
+
+
  #Technologies and modules used 
 - Python 3
 - OpenCV
@@ -25,21 +29,26 @@ Lightweight UI  of detections
 - NumPy
 - Tkinter
 
+
+
 #PROJECT STRUCTURE
 
-  ── models  
+
+----> ReadMe.md
+
+  ── models/
   
-  ── yolov4.weights   # Large files stored via Git LFS
+    • yolov4.weights   # Large files stored via Git LFS
   
-  ── yolov8n.pt
+    • yolov8n.pt
   
   ── src/
   
-  ── ui.py
+    • ui.py
  
-  ── model.py
+    • model.py
 
-  ── README.md
+ 
 
 #MODEL FILES
 
@@ -47,13 +56,15 @@ Because YOLO weight files are very large (>200 MB), they are tracked using Git L
 
 If needed, install Git LFS:
 
-git lfs install
+" git lfs install "
 
 Then download the model:
 
-git lfs pull
+" git lfs pull "
 
-INSTRUCTION: To start the project, run the ui.py file and it will automatically call the YOLODetector class from the model.py file.
+
+
+INSTRUCTION:  To start the project, run the ui.py file and it will automatically call the YOLODetector class from the model.py file.
 
 
 
