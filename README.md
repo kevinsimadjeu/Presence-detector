@@ -25,9 +25,13 @@ Lightweight UI  of detections
  #MAIN TECHNOLOGIES AND MODULES USED
  
  • Python 3
+ 
  • OpenCV
- • YOLO 
+ 
+ • YOLO
+ 
  • NumPy
+ 
  • Tkinter
 
 
@@ -57,11 +61,11 @@ Because YOLO weight files are very large (>200 MB), they are tracked using Git L
 
 If needed, install Git LFS:
 
-• " git lfs install "
+``` git lfs install ```
 
 Then download the model:
 
-• " git lfs pull "
+``` git lfs pull ```
 
 
 
