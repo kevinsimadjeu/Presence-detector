@@ -18,7 +18,7 @@ Modular and easy to extend
 
 Lightweight UI  of detections
 
- #TECHNOLOGIES USED
+ #Technologies and modules used 
 
 - Python 3
 - OpenCV
