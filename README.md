@@ -45,9 +45,9 @@ Lightweight UI  of detections
   
   ── src/
   
-    • ui.py
- 
     • model.py
+ 
+    • ui.py
 
  
 
