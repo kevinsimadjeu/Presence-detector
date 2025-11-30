@@ -19,7 +19,6 @@ Modular and easy to extend
 Lightweight UI  of detections
 
  #Technologies and modules used 
-
 - Python 3
 - OpenCV
 - YOLO 
