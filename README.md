@@ -66,7 +66,10 @@ Then download the model:
 
 
 
-INSTRUCTION:  To start the project, run the ui.py file and it will automatically call the YOLODetector class from the model.py file.
+#INSTRUCTION: 
+
+
+ To start the project, run the ui.py file and it will automatically call the YOLODetector class from the model.py file.
 
 
 
