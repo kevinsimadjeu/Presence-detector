@@ -6,7 +6,7 @@ This project demonstrates how to build an efficient detection pipeline, process 
 
 
 
-#FEATURER
+# FEATURER
 
 Real-time detection using webcam or video input
 
@@ -22,7 +22,7 @@ Lightweight UI  of detections
 
 
 
- #MAIN TECHNOLOGIES AND MODULES USED
+ # MAIN TECHNOLOGIES AND MODULES USED
  
  • Python 3
  
@@ -36,7 +36,7 @@ Lightweight UI  of detections
 
 
 
-#PROJECT STRUCTURE
+# PROJECT STRUCTURE
 
 
 ----> ReadMe.md
@@ -62,7 +62,7 @@ Lightweight UI  of detections
 
  
 
-#MODEL FILES
+# MODEL FILES
 
 Because YOLO weight files are very large (>200 MB), they are tracked using Git LFS.
 
@@ -77,7 +77,7 @@ Then download the model:
 
 
 
-#INSTRUCTION: 
+# INSTRUCTION: 
 
 
  To start the project, run the ui.py file and it will automatically call the processing file and the  YOLODetector class from the model.py file.
