@@ -230,7 +230,7 @@ class myUI:
     def toggle_recording(self):
         self.processor.toggle_recording()
         if self.processor.recording:
-            self.record_btn.config(text="⏹ Stop", bg='#f38ba8')
+            self.record_btn.config(text=" Stop", bg='#f38ba8')
         else:
             self.record_btn.config(text=" Enregistrer", bg='#89b4fa')
 
