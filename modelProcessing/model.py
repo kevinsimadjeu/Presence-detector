@@ -35,16 +35,16 @@ class YOLODetector:
     def load_model(self):
         #Charge YOLOv8
         try:
-            type_write("🔄 Chargement du modèle YOLOv8...")
+            type_write("Chargement du modèle YOLOv8...")
            
 
             model_path = resource_path(self.model_name)
             if not os.path.exists(model_path):
-                type_write("⚠️  Modèle non trouvé, téléchargement automatique...")
+                type_write("Modèle non trouvé, téléchargement automatique...")
                 model_path = self.model_name  # YOLO télécharge automatiquement s'il n'est pas trouvé NB: Que le lecteur de se code s'assure qu'il soit connecté à Internet !!!
 
             self.model = YOLO(model_path)
-            type_write("✅ YOLOv8 chargé avec succès ")
+            type_write(" YOLOv8 chargé avec succès ")
             
 
 
