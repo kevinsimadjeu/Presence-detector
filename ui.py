@@ -15,7 +15,7 @@ class myUI:
 
     def __init__(self, root):
         self.root = root
-        self.root.title("⚡Presence-Detector⚡")
+        self.root.title("Presence-Detector")
         self.root.geometry("1400x900")
         self.root.configure(bg='#1e1e2e')
 
@@ -58,7 +58,7 @@ class myUI:
         header_frame = ttk.Frame(main_container, style='Modern.TFrame')
         header_frame.pack(fill=tk.X, pady=(0, 10))
 
-        title = ttk.Label(header_frame, text="⚡Detecteur-De-Presence ",
+        title = ttk.Label(header_frame, text="Detecteur-De-Presence ",
                          style='Title.TLabel')
         title.pack(side=tk.LEFT)
 
@@ -88,7 +88,7 @@ class myUI:
         controls_inner = ttk.Frame(controls_frame, style='Card.TFrame')
         controls_inner.pack(padx=15, pady=15)
 
-        self.start_btn = tk.Button(controls_inner, text="▶ Démarrer",
+        self.start_btn = tk.Button(controls_inner, text="Démarrer",
                                    command=self.start_detection,
                                    bg='#a6e3a1', fg='#1e1e2e',
                                    font=('Segoe UI', 12, 'bold'),
@@ -96,7 +96,7 @@ class myUI:
                                    padx=20, pady=10)
         self.start_btn.pack(side=tk.LEFT, padx=5)
 
-        self.stop_btn = tk.Button(controls_inner, text="⏹ Arrêter",
+        self.stop_btn = tk.Button(controls_inner, text="Arrêter",
                                   command=self.stop_detection,
                                   bg='#f38ba8', fg='#1e1e2e',
                                   font=('Segoe UI', 12, 'bold'),
@@ -104,7 +104,7 @@ class myUI:
                                   padx=20, pady=10, state='disabled')
         self.stop_btn.pack(side=tk.LEFT, padx=5)
 
-        self.record_btn = tk.Button(controls_inner, text="🎥 Enregistrer",
+        self.record_btn = tk.Button(controls_inner, text="Enregistrer",
                                     command=self.toggle_recording,
                                     bg='#89b4fa', fg='#1e1e2e',
                                     font=('Segoe UI', 12, 'bold'),
@@ -112,7 +112,7 @@ class myUI:
                                     padx=20, pady=10, state='disabled')
         self.record_btn.pack(side=tk.LEFT, padx=5)
 
-        self.screenshot_btn = tk.Button(controls_inner, text="📸 Capture",
+        self.screenshot_btn = tk.Button(controls_inner, text="Capture",
                                        command=self.take_screenshot,
                                        bg='#f9e2af', fg='#1e1e2e',
                                        font=('Segoe UI', 12, 'bold'),
@@ -143,14 +143,14 @@ class myUI:
         right_column.pack(side=tk.RIGHT, fill=tk.BOTH)
         right_column.pack_propagate(False)
 
-        stats_title = ttk.Label(right_column, text="📊 Statistiques",
+        stats_title = ttk.Label(right_column, text="Statistiques",
                                style='Modern.TLabel',
                                font=('Segoe UI', 16, 'bold'))
         stats_title.pack(pady=(0, 15))
 
         self.stat_cards = []
 
-        self.create_stat_card(right_column, "FPS ⚡", "0")
+        self.create_stat_card(right_column, "FPS ", "0")
         self.fps_value_label = self.stat_cards[-1]
 
         self.create_stat_card(right_column, "Objets Détectés", "0")
@@ -165,7 +165,7 @@ class myUI:
         top_frame = ttk.Frame(right_column, style='Card.TFrame')
         top_frame.pack(fill=tk.BOTH, expand=True, pady=(15, 0))
 
-        ttk.Label(top_frame, text="🏆 Top 5",
+        ttk.Label(top_frame, text="Top 5",
                  style='Stat.TLabel',
                  font=('Segoe UI', 14, 'bold')).pack(pady=10)
 
@@ -176,7 +176,7 @@ class myUI:
         self.top_list.pack(fill=tk.BOTH, expand=True, padx=10, pady=(0, 10))
 
         footer = ttk.Label(right_column,
-                          text="⚡ Powered by YOLOv8",
+                          text=" Powered by YOLOv8",
                           style='Modern.TLabel',
                           font=('Segoe UI', 9))
         footer.pack(side=tk.BOTTOM, pady=10)
@@ -232,12 +232,12 @@ class myUI:
         if self.processor.recording:
             self.record_btn.config(text="⏹ Stop", bg='#f38ba8')
         else:
-            self.record_btn.config(text="🎥 Enregistrer", bg='#89b4fa')
+            self.record_btn.config(text=" Enregistrer", bg='#89b4fa')
 
     def take_screenshot(self):
         filename = self.processor.screenshot()
         if filename:
-            messagebox.showinfo("✅", f"Capture: {filename}")
+            messagebox.showinfo( f"Capture: {filename}")
 
     def detection_loop(self):
         while self.processor.running:
