@@ -80,8 +80,9 @@ Then download the model:
 Clone the repository:
 
  ```
-git clone https://github.com/kevinsimadjeu/presence-detector.git. ‘‘‘
+git clone https://github.com/kevinsimadjeu/presence-detector.git. 
 
+```
 
 
 # INSTRUCTION: 
