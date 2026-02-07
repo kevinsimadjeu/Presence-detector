@@ -45,8 +45,6 @@ project-root/
 
 ├── YOLO/
 
-│   ├── __init__.py
-
 │   └── yolov8.py    # YOLO-related logic (model loading, inference)
 
 │
@@ -61,7 +59,7 @@ project-root/
 
 │
 
-├── ui.py                      # User interface (GUI)
+├── ui.py                      #(GUI)
 
 ├── yolov8n.pt                 # Pre-trained YOLOv8 weights
 
