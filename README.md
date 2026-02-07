@@ -75,12 +75,20 @@ Then download the model:
 ``` git lfs pull ```
 
 
+# Installation
+
+Clone the repository:
+
+ ```
+git clone https://github.com/kevinsimadjeu/presence-detector.git
+
 
 
 # INSTRUCTION: 
 
 
  To start the project, run the ui.py file and it will automatically call the processing file and the  YOLODetector class from the model.py file.
+
 
 
 
