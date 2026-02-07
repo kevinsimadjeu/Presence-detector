@@ -49,9 +49,9 @@ project-root/
 
 ├── modelProcessing/
 
-|     ├── model.py                
+|         ├── model.py                
 
-│     └── processing.py         
+│         └── processing.py         
 
 │
 
