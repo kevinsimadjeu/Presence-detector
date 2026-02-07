@@ -49,15 +49,15 @@ project-root/
 
 ├── modelProcessing/
 
-|   ├── model.py                 #(loading, configuration)
+|   ├── model.py                
 
-│   └── processing.py          # Data preprocessing and post-processing
+│   └── processing.py         
 
 │
 
-├── ui.py                      #(GUI)
+├── ui.py                    
 
-├── yolov8n.pt                 # Pre-trained YOLOv8 weights
+├── yolov8n.pt            
 
 │
 
