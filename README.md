@@ -39,28 +39,25 @@ Lightweight UI  of detections
 # PROJECT STRUCTURE
 
 
-----> ReadMe.md
-
-  ── YOLO/
-  
-    • yolov4.weights   # Large files stored via Git LFS
-  
-    • yolov8n.pt
-  
-  ── src/
-
-    • ui.py
-
-  ── modelProcessing/  
-
-    • model.py
-        
-    • processing.py
-
-
+project-root/
+│
+├── YOLO/
+│   ├── __init__.py
+│   └── yolov8.py              # YOLO-related logic (model loading, inference)
+│
+├── modelProcessing/
+│ 
+|   ├── model.py               # Model management (loading, configuration)
+│   └── processing.py          # Data preprocessing and post-processing
+│
+├── ui.py                      # User interface (GUI)
+├── yolov8n.pt                 # Pre-trained YOLOv8 weights
+│
+├── README.md                  # Project overview, installation, usage
+├── LICENSE                    # Project license
+└── .gitattributes             # Git configuration
 
 
- 
 
 # MODEL FILES
 
