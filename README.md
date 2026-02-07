@@ -46,13 +46,10 @@ project-root/
 ├── YOLO/
 
 │   └── yolov8.py 
-│
 
 ├── modelProcessing/
 
-│ 
-
-|   ├── model.py               # Model management (loading, configuration)
+|   ├── model.py                 #(loading, configuration)
 
 │   └── processing.py          # Data preprocessing and post-processing
 
@@ -64,9 +61,9 @@ project-root/
 
 │
 
-├── README.md                  # Project overview, installation, usage
+├── README.md      
 
-├── LICENSE                    # Project license
+├── LICENSE   
 
 └── .gitattributes             # Git configuration
 
