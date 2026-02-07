@@ -40,21 +40,37 @@ Lightweight UI  of detections
 
 
 project-root/
+
 │
+
 ├── YOLO/
+
 │   ├── __init__.py
-│   └── yolov8.py              # YOLO-related logic (model loading, inference)
+
+│   └── yolov8.py    # YOLO-related logic (model loading, inference)
+
 │
+
 ├── modelProcessing/
+
 │ 
+
 |   ├── model.py               # Model management (loading, configuration)
+
 │   └── processing.py          # Data preprocessing and post-processing
+
 │
+
 ├── ui.py                      # User interface (GUI)
+
 ├── yolov8n.pt                 # Pre-trained YOLOv8 weights
+
 │
+
 ├── README.md                  # Project overview, installation, usage
+
 ├── LICENSE                    # Project license
+
 └── .gitattributes             # Git configuration
 
 
