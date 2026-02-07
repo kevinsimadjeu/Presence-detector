@@ -45,8 +45,7 @@ project-root/
 
 ├── YOLO/
 
-│   └── yolov8.py    # YOLO-related logic (model loading, inference)
-
+│   └── yolov8.py 
 │
 
 ├── modelProcessing/
