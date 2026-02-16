@@ -21,6 +21,17 @@ Modular and easy to extend
 Lightweight UI  of detections
 
 
+##  Project Demonstration
+
+To illustrate the system’s behavior in real conditions, a visual demonstration has been included.
+
+-  Execution screenshot
+-  Execution video
+
+These files are available in the `project-demo/` directory.
+
+
+
 
  # MAIN TECHNOLOGIES AND MODULES USED
  
@@ -41,17 +52,27 @@ Lightweight UI  of detections
 
 project-root/
 
+├── modelProcessing/
+
+|    ├── model.py 
+
+│    └── processing.py
+
+│  
+
+├── project-demo/
+
+│     ├── Demo-detction.avi
+
+│     └── Demo-detction.png 
+
 │
 
 ├── YOLO/
 
-│   └── yolov8.py 
+│      ├── coco.names
 
-├── modelProcessing/
-
-|     ├── model.py                
-
-│     └── processing.py         
+│      └── yolov8.py  
 
 │
 
