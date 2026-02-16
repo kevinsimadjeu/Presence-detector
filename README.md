@@ -72,7 +72,7 @@ project-root/
 
 │      ├── coco.names
 
-│      └── yolov8.py  
+│      └── yolov8.pt  
 
 │
 
