@@ -94,8 +94,22 @@ git clone https://github.com/kevinsimadjeu/Presence-detector.git.
 
 # INSTRUCTION: 
 
+This presence detection program can be coupled to an ESP32 microcontroller for physical actions (e.g. turning on an LED or triggering a relay) depending on the detection of a person.
+
+• Sending the signal to the ESP32 is done via HTTP requests, which makes it easy to reconfigure the IP address or port depending on your network.
+
+• The code is modular: you can adapt the action logic on the ESP32 or add other sensors if necessary.
+
+• This  architecture separates software detection on the computer and hardware control over the ESP32, offering maximum flexibility for different scenarios.
+
+
 
  To start the project, run the ui.py file and it will automatically call the processing file and the  YOLODetector class from the model.py file.
+
+
+### Warning 
+
+Make sure the ESP32 is connected to the same local network as the computer running the program for communication to work properly.
 
 
 
