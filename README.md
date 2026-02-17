@@ -125,7 +125,7 @@ This presence detection program can be coupled to an ESP32 microcontroller for p
 
 
 
- To start the project, run the```ui.py ``` file and it will automatically call the processing file and the  YOLODetector class from the ```model.py ```file.
+ To start the project, run the `ui.py` file and it will automatically call the processing file and the  YOLODetector class from the ```model.py ```file.
 
 
 ### Warning 
