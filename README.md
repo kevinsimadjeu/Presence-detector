@@ -49,7 +49,7 @@ These files are available in the `project-demo/` directory.
 
 # PROJECT STRUCTURE
 
-
+```
 project-root/
 
 ├── modelProcessing/
@@ -87,7 +87,7 @@ project-root/
 ├── LICENSE   
 
 └── .gitattributes             # Git configuration
-
+```
 
 
 # MODEL FILES
