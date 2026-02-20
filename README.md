@@ -47,49 +47,6 @@ These files are available in the `project-demo/` directory.
 
 
 
-# PROJECT STRUCTURE
-
-```
-project-root/
-
-├── modelProcessing/
-
-|    ├── model.py 
-
-│    └── processing.py
-
-│  
-
-├── project-demo/
-
-│     ├── Demo-detction.avi
-
-│     └── Demo-detction.png 
-
-│
-
-├── YOLO/
-
-│      ├── coco.names
-
-│      └── yolov8.pt  
-
-│
-
-├── ui.py                    
-
-├── yolov8n.pt            
-
-│
-
-├── README.md      
-
-├── LICENSE   
-
-└── .gitattributes             # Git configuration
-```
-
-
 # MODEL FILES
 
 Because YOLO weight files are very large (>200 MB), they are tracked using Git LFS.
